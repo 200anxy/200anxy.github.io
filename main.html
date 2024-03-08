@@ -18,11 +18,15 @@
   </header>
   <main>
   <form>
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
+    <form action="signup.html" method="post">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <input type="submit" value="Login">
+    </form>
 
     <input type="submit" value="Login">
     <p>Don't have an account? <a href="signup.html">Sign up</a></p>
