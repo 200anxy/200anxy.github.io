@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>404 Page Not Found</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <h1>404 Page Not Found</h1>
+    <p>Oops! The page you are looking for does not exist.</p>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+        <script>
+            // Your minigame code goes here
+            const canvas = document.getElementById('gameCanvas');
+            const ctx = canvas.getContext('2d');
+
+            // Define game variables
+            let score = 0;
+            let lives = 3;
+
+            // Define initial game state
+            let gameState = {
+                gameOver: false,
+                level: 1
+            };
+
+            // Define snake object
+            let snake = {
+                x: 0,
+                y: 0,
+                dx: 1,
+                dy: 0,
+                cells: [],
+                maxCells: 4
+            };
+
+            function update() {
+                // Update game state
+
+                // Clear canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Draw game objects
+                drawSnake();
+
+                // Check for collisions
+
+                // Check for game over condition
+
+                // Request next animation frame
+                requestAnimationFrame(update);
+            }
+
+            function drawSnake() {
+                // Draw snake
+                ctx.fillStyle = 'green';
+                for (let i = 0; i < snake.cells.length; i++) {
+                    ctx.fillRect(snake.cells[i].x, snake.cells[i].y, 20, 20);
+                }
+            }
+
+            function startGame() {
+                // Initialize game state
+
+                // Start game loop
+                update();
+            }
+
+            // Start the game
+            startGame();
+        </script>
+    </body>
+</html>
