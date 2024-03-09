@@ -2,123 +2,66 @@
 <html>
 <head>
     <title>404 Page Not Found</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-        }
-
-        h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 24px;
-            margin-bottom: 40px;
-        }
-
-        canvas {
-            border: 1px solid #000;
-        }
-    </style>
-</head>
-<body>
-    <h1>404 Page Not Found</h1>
-    <p>Oops! The page you are looking for does not exist.</p>
-    <canvas id="gameCanvas" width="800" height="600"></canvas>
-
-    <script>
-        // Your minigame code goes here
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-
-        // Define game variables
-        let score = 0;
-        let lives = 3;
-
-        // Define initial game state
-        let gameState = {
-            gameOver: false,
-            level: 1
-        };
-
-        // Define snake object
-        let snake = {
-            x: 0,
-            y: 0,
-            dx: 1,
-            dy: 0,
-            cells: [],
-            maxCells: 4
-        };
-
-        // Add event listeners for keyboard input
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowUp' && snake.dy !== 1) {
-                snake.dx = 0;
-                snake.dy = -1;
-            } else if (event.key === 'ArrowDown' && snake.dy !== -1) {
-                snake.dx = 0;
-                snake.dy = 1;
-            } else if (event.key === 'ArrowLeft' && snake.dx !== 1) {
-                snake.dx = -1;
-                snake.dy = 0;
-            } else if (event.key === 'ArrowRight' && snake.dx !== -1) {
-                snake.dx = 1;
-                snake.dy = 0;
-            }
-        });
-
-        function drawSnake() {
-            // Draw snake
-            ctx.fillStyle = 'green';
-            for (let i = 0; i < snake.cells.length; i++) {
-                ctx.fillRect(snake.cells[i].x, snake.cells[i].y, 20, 20);
-            }
-        }
-
-        function update() {
-            // Update game state
-
-            // Move snake
-            snake.x += snake.dx * 20;
-            snake.y += snake.dy * 20;
-
-            // Add new cell to snake
-            snake.cells.unshift({ x: snake.x, y: snake.y });
-
-            // Remove excess cells
-            if (snake.cells.length > snake.maxCells) {
-                snake.cells.pop();
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                font-family: Arial, sans-serif;
             }
 
-            // Clear canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            h1 {
+                font-size: 48px;
+                margin-bottom: 20px;
+            }
 
-            // Draw game objects
-            drawSnake();
+            p {
+                font-size: 24px;
+                margin-bottom: 40px;
+            }
 
-            // Check for collisions
+            canvas {
+                border: 1px solid #000;
+            }
 
-            // Check for game over condition
+            @keyframes slideIn {
+                0% {
+                    transform: translateY(-100%);
+                    opacity: 0;
+                }
+                100% {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
 
-            // Request next animation frame
-            requestAnimationFrame(update);
-        }
+            .animation {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                font-family: Arial, sans-serif;
+            }
 
-        function startGame() {
-            // Initialize game state
+            .letter {
+                font-size: 48px;
+                margin-right: 10px;
+                animation: slideIn 0.5s ease-in-out forwards;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>404 Page Not Found</h1>
+        <p>Oops! The page you are looking for does not exist.</p>
 
-            // Start game loop
-            update();
-        }
-
-        // Start the game
-        startGame();
-    </script>
-    </body>
+        <div class="animation">
+            <span class="letter">2</span>
+            <span class="letter">0</span>
+            <span class="letter">0</span>
+            <span class="letter">a</span>
+            <span class="letter">n</span>
+            <span class="letter">x</span>
+            <span class="letter">y</span>
+        </div>
 </html>
