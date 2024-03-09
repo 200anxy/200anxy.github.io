@@ -54,7 +54,15 @@
                 dy: 0,
                 cells: [],
                 maxCells: 4
-            };
+            }; 
+            function drawSnake() {
+                // Draw snake
+                ctx.fillStyle = 'green';
+                for (let i = 0; i < snake.cells.length; i++) {
+                    ctx.fillRect(snake.cells[i].x, snake.cells[i].y, 20, 20);
+                }
+            }
+
 
             function update() {
                 // Update game state
@@ -73,14 +81,7 @@
                 requestAnimationFrame(update);
             }
 
-            function drawSnake() {
-                // Draw snake
-                ctx.fillStyle = 'green';
-                for (let i = 0; i < snake.cells.length; i++) {
-                    ctx.fillRect(snake.cells[i].x, snake.cells[i].y, 20, 20);
-                }
-            }
-
+           
             function startGame() {
                 // Initialize game state
 
