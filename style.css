@@ -1,6 +1,4 @@
-*{
-  text-align: center;
-}
+
 body {
   font-family: Arial, sans-serif;
   text-align: center;
@@ -24,4 +22,10 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
+}
+h1 {
+  text-align: center;
+}
+h2{
+  text-align: left;
 }
