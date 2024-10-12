@@ -1,1 +1,0 @@
-# This is a website thats gonna host the docs for my projects and also my portofolio
