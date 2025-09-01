@@ -1,97 +1,59 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>200anxy — About Me</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="About me — 200anxy. Python, C#, C++, HTML, JavaScript, CSS." />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>200anxy | Developer</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+</head>
+<body>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
-    <!-- Devicon (icons for languages) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
-
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <!-- Background glow -->
-    <div class="bg">
-      <div class="blob blob-1"></div>
-      <div class="blob blob-2"></div>
-      <div class="grain"></div>
-    </div>
-
-    <header class="hero" role="banner">
-      <h1 class="glitch" data-text="200anxy">200anxy</h1>
-      <p class="type"><span id="typewriter" aria-live="polite"></span><span class="cursor" aria-hidden="true">▌</span></p>
-
-      <nav class="actions" aria-label="Primary">
-        <a class="btn primary" href="#about">About me</a>
-        <a class="btn ghost" href="#stack">Tech I love</a>
-      </nav>
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="animate-on-load">200anxy</h1>
+            <p class="subtitle animate-on-load" style="transition-delay: 0.2s;">Developer // Creator // Problem Solver</p>
+        </div>
     </header>
 
     <main>
-      <section id="stack" class="stack" aria-labelledby="stack-title">
-        <h2 id="stack-title">Tech I love</h2>
-
-        <!-- Scrolling carousel (duplicated sequence for seamless loop) -->
-        <div class="carousel" role="region" aria-label="Scrolling tech logos">
-          <div class="track">
-            <!-- Sequence A -->
-            <div class="tech"><i class="devicon-python-plain colored"></i><span>Python</span></div>
-            <div class="tech"><i class="devicon-csharp-plain colored"></i><span>C#</span></div>
-            <div class="tech"><i class="devicon-cplusplus-plain colored"></i><span>C++</span></div>
-            <div class="tech"><i class="devicon-html5-plain colored"></i><span>HTML</span></div>
-            <div class="tech"><i class="devicon-javascript-plain colored"></i><span>JavaScript</span></div>
-            <div class="tech"><i class="devicon-css3-plain colored"></i><span>CSS</span></div>
-            <!-- Sequence B (duplicate) -->
-            <div class="tech"><i class="devicon-python-plain colored"></i><span>Python</span></div>
-            <div class="tech"><i class="devicon-csharp-plain colored"></i><span>C#</span></div>
-            <div class="tech"><i class="devicon-cplusplus-plain colored"></i><span>C++</span></div>
-            <div class="tech"><i class="devicon-html5-plain colored"></i><span>HTML</span></div>
-            <div class="tech"><i class="devicon-javascript-plain colored"></i><span>JavaScript</span></div>
-            <div class="tech"><i class="devicon-css3-plain colored"></i><span>CSS</span></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="about" class="about" aria-labelledby="about-title">
-        <h2 id="about-title">About me</h2>
-        <p>
-          I’m <strong>200anxy</strong> — I love building things that feel fast, clean, and just a little bit futuristic.
-          My stack: <strong>Python</strong>, <strong>C#</strong>, <strong>C++</strong>, <strong>HTML</strong>, <strong>JavaScript</strong>, and <strong>CSS</strong>.
-        </p>
-        <p>
-          I care about smooth interactions, tiny details, and code that looks as good as it runs.
-          If it glows, scrolls, or snaps into place — I’m into it.
-        </p>
-
-        <div class="cards">
-          <article class="card">
-            <h3>What I build</h3>
-            <ul>
-              <li><strong>Interactive UI:</strong> snappy, animated, accessible.</li>
-              <li><strong>Web apps:</strong> front-end heavy, modern tooling.</li>
-              <li><strong>Experiments:</strong> visuals, canvases, micro‑interactions.</li>
-            </ul>
-          </article>
-          <article class="card">
-            <h3>How I work</h3>
-            <ul>
-              <li><strong>Clean code:</strong> readable, scalable structure.</li>
-              <li><strong>Performance:</strong> buttery 60fps vibes.</li>
-              <li><strong>Design sense:</strong> bold, dark, neon highlights.</li>
-            </ul>
-          </article>
-        </div>
-      </section>
+        <section class="about-section animate-on-scroll">
+            <h2>About Me</h2>
+            <p>
+                Hi there! I'm 200anxy, and I am a student who is learning how to code. Currently I am interested in Machine Learning and AI, as well as learning C#.
+            </p>
+        </section>
+        
+        <section class="skills-section animate-on-scroll">
+            <h2>My Tech Stack</h2>
+            <div class="logos">
+                <div class="logos-slide">
+                    <i class="devicon-python-plain"></i>
+                    <i class="devicon-csharp-plain-wordmark"></i>
+                    <i class="devicon-cplusplus-plain"></i>
+                    <i class="devicon-html5-plain-wordmark"></i>
+                    <i class="devicon-javascript-plain"></i>
+                    <i class="devicon-css3-plain-wordmark"></i>
+                    <i class="devicon-react-original"></i>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="footer" role="contentinfo">
-      <p>© <span id="year"></span> 200anxy</p>
+    <footer class="footer">
+        <p>Find me on 
+            <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a> &bull; 
+            <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </p>
+        <p>&copy; 2025 200anxy. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
-  </body>
+</body>
 </html>

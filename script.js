@@ -1,57 +1,32 @@
-// Typewriter that cycles through phrases
-const phrases = [
-  "Coder",
-  "Creator",
-  "Innovator",
-  "Python • C# • C++ • HTML • JS • CSS"
-];
+document.addEventListener('DOMContentLoaded', () => {
 
-const typeEl = document.getElementById("typewriter");
-const yearEl = document.getElementById("year");
-if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-let phraseIndex = 0;
-let charIndex = 0;
-let deleting = false;
-
-function typeLoop() {
-  const current = phrases[phraseIndex];
-  const speed = deleting ? 28 : 55; // typing / deleting speed
-  const pause = 1300; // pause at end
-
-  if (!deleting) {
-    typeEl.textContent = current.slice(0, charIndex + 1);
-    charIndex++;
-    if (charIndex === current.length) {
-      deleting = true;
-      setTimeout(typeLoop, pause);
-      return;
+    // --- LOGO SCROLLER SCRIPT ---
+    const scroller = document.querySelector('.logos-slide');
+    if (scroller) {
+        // Clone the logos to create a seamless loop
+        const logos = Array.from(scroller.children);
+        logos.forEach(logo => {
+            const duplicateLogo = logo.cloneNode(true);
+            duplicateLogo.setAttribute('aria-hidden', true);
+            scroller.appendChild(duplicateLogo);
+        });
     }
-  } else {
-    typeEl.textContent = current.slice(0, charIndex - 1);
-    charIndex--;
-    if (charIndex === 0) {
-      deleting = false;
-      phraseIndex = (phraseIndex + 1) % phrases.length;
-    }
-  }
-  setTimeout(typeLoop, speed);
-}
 
-document.addEventListener("DOMContentLoaded", () => {
-  if (typeEl) typeLoop();
+    // --- SCROLL ANIMATION SCRIPT ---
+    const scrollElements = document.querySelectorAll('.animate-on-scroll');
 
-  // Improve carousel smoothness by ensuring enough content fills width (optional)
-  const track = document.querySelector(".track");
-  if (track) {
-    // If track is too short, clone its children until width is sufficient
-    const minWidth = track.parentElement.offsetWidth * 2;
-    let total = track.scrollWidth;
-    while (total < minWidth) {
-      [...track.children].forEach((child) => {
-        track.appendChild(child.cloneNode(true));
-      });
-      total = track.scrollWidth;
-    }
-  }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // If the element is intersecting the viewport, add the 'is-visible' class
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    }, {
+        threshold: 0.1 // Trigger when 10% of the element is visible
+    });
+
+    scrollElements.forEach(element => {
+        observer.observe(element);
+    });
 });
