@@ -1,57 +1,37 @@
-// Typewriter that cycles through phrases
-const phrases = [
-  "Coder",
-  "Creator",
-  "Innovator",
-  "Python • C# • C++ • HTML • JS • CSS"
-];
+document.addEventListener('DOMContentLoaded', (event) => {
 
-const typeEl = document.getElementById("typewriter");
-const yearEl = document.getElementById("year");
-if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-let phraseIndex = 0;
-let charIndex = 0;
-let deleting = false;
-
-function typeLoop() {
-  const current = phrases[phraseIndex];
-  const speed = deleting ? 28 : 55; // typing / deleting speed
-  const pause = 1300; // pause at end
-
-  if (!deleting) {
-    typeEl.textContent = current.slice(0, charIndex + 1);
-    charIndex++;
-    if (charIndex === current.length) {
-      deleting = true;
-      setTimeout(typeLoop, pause);
-      return;
+    // --- LOGO SCROLLER SCRIPT ---
+    const scroller = document.querySelector('.logos-slide');
+    if (scroller) {
+        // Clone the logos and append them to make the loop seamless
+        const logos = Array.from(scroller.children);
+        logos.forEach(logo => {
+            const duplicateLogo = logo.cloneNode(true);
+            duplicateLogo.setAttribute('aria-hidden', true); // Hide from screen readers
+            scroller.appendChild(duplicateLogo);
+        });
     }
-  } else {
-    typeEl.textContent = current.slice(0, charIndex - 1);
-    charIndex--;
-    if (charIndex === 0) {
-      deleting = false;
-      phraseIndex = (phraseIndex + 1) % phrases.length;
-    }
-  }
-  setTimeout(typeLoop, speed);
-}
 
-document.addEventListener("DOMContentLoaded", () => {
-  if (typeEl) typeLoop();
+    // --- SCROLL FADE-IN SCRIPT ---
+    const fadeElems = document.querySelectorAll('.scroll-fade');
 
-  // Improve carousel smoothness by ensuring enough content fills width (optional)
-  const track = document.querySelector(".track");
-  if (track) {
-    // If track is too short, clone its children until width is sufficient
-    const minWidth = track.parentElement.offsetWidth * 2;
-    let total = track.scrollWidth;
-    while (total < minWidth) {
-      [...track.children].forEach((child) => {
-        track.appendChild(child.cloneNode(true));
-      });
-      total = track.scrollWidth;
-    }
-  }
+    const observerOptions = {
+        root: null, // observes intersections relative to the viewport
+        rootMargin: '0px',
+        threshold: 0.1 // trigger when 10% of the element is visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Optional: Stop observing the element once it's visible
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    fadeElems.forEach(elem => {
+        observer.observe(elem);
+    });
 });
