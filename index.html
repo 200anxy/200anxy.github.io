@@ -7,16 +7,16 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         /* =========================================
-           CUSTOMIZATION ZONE: Edit colors here!
+           CUSTOMIZATION ZONE
            ========================================= */
         :root {
-            --bg-color: #0f172a;          /* Main background */
-            --card-bg: #1e293b;           /* Card background */
-            --card-border: #334155;       /* Card border */
-            --text-primary: #f8fafc;      /* Main text */
-            --text-secondary: #94a3b8;    /* Subtitles and bio */
-            --accent-color: #3b82f6;      /* Highlights and buttons */
-            --accent-hover: #60a5fa;      /* Button hover state */
+            --bg-color: #0f172a;          
+            --card-bg: #1e293b;           
+            --card-border: #334155;       
+            --text-primary: #f8fafc;      
+            --text-secondary: #94a3b8;    
+            --accent-color: #3b82f6;      
+            --accent-hover: #60a5fa;      
             --font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
 
@@ -67,10 +67,7 @@
             transition: all 0.2s;
         }
 
-        .nav-btn:hover {
-            color: var(--text-primary);
-        }
-
+        .nav-btn:hover { color: var(--text-primary); }
         .nav-btn.active {
             background: var(--accent-color);
             color: white;
@@ -81,16 +78,28 @@
            BENTO GRID LAYOUT
            ========================================= */
         .tab-content {
-            display: none; /* Hidden by default */
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            display: none; 
             max-width: 900px;
             width: 100%;
             animation: fadeIn 0.4s ease-out;
         }
 
-        .tab-content.active {
-            display: grid; /* Show active tab */
+        .tab-content.active { display: block; }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .section-title {
+            grid-column: span 3;
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--card-border);
+            color: var(--text-primary);
         }
 
         @keyframes fadeIn {
@@ -121,11 +130,9 @@
             pointer-events: none;
         }
 
-        .card:hover::before {
-            opacity: 1;
-        }
+        .card:hover::before { opacity: 1; }
 
-        /* Span classes for grid sizing */
+        /* Span classes */
         .span-2 { grid-column: span 2; }
         .span-3 { grid-column: span 3; }
         .row-span-2 { grid-row: span 2; }
@@ -133,25 +140,12 @@
         /* =========================================
            SPECIFIC CARD STYLES
            ========================================= */
-        
-        /* Profile & About Elements */
-        .profile-card {
-            align-items: center;
-            text-align: center;
-            gap: 1rem;
-        }
-
+        .profile-card { align-items: center; text-align: center; gap: 1rem; }
         .profile-pic {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
+            width: 120px; height: 120px; border-radius: 50%;
             background: linear-gradient(135deg, var(--accent-color), #8b5cf6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 3rem; color: white; box-shadow: 0 8px 16px rgba(0,0,0,0.2);
         }
 
         h1 { font-size: 1.8rem; font-weight: 700; }
@@ -162,31 +156,15 @@
         .text-body { color: var(--text-secondary); font-size: 1.05rem; flex-grow: 1; }
 
         /* Tags */
-        .tags-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
-
+        .tags-container { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
         .tag {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--card-border);
-            padding: 0.4rem 0.8rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.2s;
+            padding: 0.4rem 0.8rem; border-radius: 8px;
+            font-size: 0.85rem; color: var(--text-secondary);
+            display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s;
         }
-
-        .tag:hover {
-            background: var(--accent-color);
-            color: white;
-            border-color: var(--accent-color);
-        }
+        .tag:hover { background: var(--accent-color); color: white; border-color: var(--accent-color); }
 
         /* Links */
         .social-links { display: flex; justify-content: space-around; align-items: center; height: 100%; }
@@ -194,22 +172,23 @@
         .social-btn:hover { color: var(--accent-color); transform: scale(1.1); }
         
         .project-link {
-            display: inline-block;
-            margin-top: 1rem;
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: color 0.2s;
+            display: inline-block; margin-top: 1rem; color: var(--accent-color);
+            text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: color 0.2s;
         }
         .project-link:hover { color: var(--accent-hover); text-decoration: underline; }
+
+        .loader {
+            grid-column: span 3; text-align: center; color: var(--text-secondary);
+            padding: 2rem; font-style: italic;
+        }
 
         /* =========================================
            RESPONSIVE DESIGN
            ========================================= */
         @media (max-width: 768px) {
-            .tab-content { grid-template-columns: 1fr; }
+            .bento-grid { grid-template-columns: 1fr; }
             .span-2, .span-3, .row-span-2 { grid-column: span 1; grid-row: span 1; }
+            .section-title { grid-column: span 1; }
         }
     </style>
 </head>
@@ -221,142 +200,173 @@
     </nav>
 
     <div id="about" class="tab-content active">
-        
-        <div class="card profile-card row-span-2 interactive-card">
-            <div class="profile-pic"><i class="fa-solid fa-code"></i></div>
-            <div>
-                <h1>Aadarsh</h1>
-                <p class="alias">@200anxy</p>
+        <div class="bento-grid">
+            <div class="card profile-card row-span-2 interactive-card">
+                <div class="profile-pic"><i class="fa-solid fa-code"></i></div>
+                <div>
+                    <h1>Aadarsh</h1>
+                    <p class="alias">@200anxy</p>
+                </div>
+                <p class="text-body" style="font-size: 0.95rem; text-align: center;">
+                    Developer, builder, and continuous learner. Balancing code, creativity, and the daily grind.
+                </p>
             </div>
-            <p class="text-body" style="font-size: 0.95rem; text-align: center;">
-                Developer, builder, and continuous learner. Balancing code, creativity, and the daily grind.
-            </p>
-        </div>
 
-        <div class="card span-2 interactive-card">
-            <h2><i class="fa-solid fa-hand-wave"></i> Hello, World!</h2>
-            <p class="text-body">
-                I'm passionate about building things that work well and look great. Whether I'm diving into Python scripts, experimenting with Progressive Web Apps (PWAs), or tinkering with a Raspberry Pi, I'm always looking for the next problem to solve. When I'm not studying for VCE or writing code, I'm usually taking a break with some anime, catching up on manga, or practicing the piano.
-            </p>
-        </div>
-
-        <div class="card span-2 interactive-card">
-            <h2><i class="fa-solid fa-bolt"></i> Current Interests & Tech</h2>
-            <div class="tags-container">
-                <div class="tag"><i class="fa-brands fa-python"></i> Python</div>
-                <div class="tag"><i class="fa-solid fa-terminal"></i> TUI Development</div>
-                <div class="tag"><i class="fa-brands fa-chrome"></i> PWAs</div>
-                <div class="tag"><i class="fa-brands fa-raspberry-pi"></i> Raspberry Pi</div>
-                <div class="tag"><i class="fa-solid fa-music"></i> Piano</div>
-                <div class="tag"><i class="fa-solid fa-tv"></i> Anime & Manga</div>
+            <div class="card span-2 interactive-card">
+                <h2><i class="fa-solid fa-hand-wave"></i> Hello, World!</h2>
+                <p class="text-body">
+                    I'm passionate about building things that work well and look great. Whether I'm diving into Python scripts, experimenting with Progressive Web Apps (PWAs), or tinkering with a Raspberry Pi, I'm always looking for the next problem to solve. When I'm not studying for VCE or writing code, I'm usually taking a break with some anime, catching up on manga, or practicing the piano.
+                </p>
             </div>
-        </div>
 
-        <div class="card interactive-card">
-            <div class="social-links">
-                <a href="#" class="social-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                <a href="#" class="social-btn" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="mailto:your.email@example.com" class="social-btn" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            <div class="card span-2 interactive-card">
+                <h2><i class="fa-solid fa-bolt"></i> Current Interests & Tech</h2>
+                <div class="tags-container">
+                    <div class="tag"><i class="fa-brands fa-python"></i> Python</div>
+                    <div class="tag"><i class="fa-solid fa-terminal"></i> TUI Development</div>
+                    <div class="tag"><i class="fa-brands fa-chrome"></i> PWAs</div>
+                    <div class="tag"><i class="fa-brands fa-raspberry-pi"></i> Raspberry Pi</div>
+                    <div class="tag"><i class="fa-solid fa-music"></i> Piano</div>
+                    <div class="tag"><i class="fa-solid fa-tv"></i> Anime & Manga</div>
+                </div>
+            </div>
+
+            <div class="card interactive-card">
+                <div class="social-links">
+                    <a href="https://github.com/200anxy" target="_blank" class="social-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="social-btn" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="mailto:your.email@example.com" class="social-btn" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                </div>
             </div>
         </div>
     </div>
 
     <div id="projects" class="tab-content">
-        
-        <div class="card span-2 interactive-card">
-            <h3>📰 Morning News + Weather Scraper</h3>
-            <p class="text-body">A Python script designed to automatically aggregate daily news and local weather to streamline the morning routine.</p>
-            <div class="tags-container">
-                <div class="tag"><i class="fa-brands fa-python"></i> Python</div>
-                <div class="tag"><i class="fa-solid fa-robot"></i> Automation</div>
-            </div>
-            <a href="#" class="project-link">View Source <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
+        <div class="bento-grid" id="projects-grid">
+            
+            <h2 class="section-title">Featured Projects</h2>
 
-        <div class="card interactive-card">
-            <h3>📱 Progressive Web Apps</h3>
-            <p class="text-body">Building responsive, installable web experiences focused on offline capabilities and seamless UI.</p>
-            <div class="tags-container">
-                <div class="tag"><i class="fa-brands fa-js"></i> JavaScript</div>
-                <div class="tag">PWA</div>
+            <div class="card span-2 interactive-card">
+                <h3>📰 Morning News + Weather Scraper</h3>
+                <p class="text-body">A Python script designed to automatically aggregate daily news and local weather to streamline the morning routine.</p>
+                <div class="tags-container">
+                    <div class="tag"><i class="fa-brands fa-python"></i> Python</div>
+                    <div class="tag"><i class="fa-solid fa-robot"></i> Automation</div>
+                </div>
+                <a href="#" class="project-link">View Source <i class="fa-solid fa-arrow-right"></i></a>
             </div>
-            <a href="#" class="project-link">Live Demo <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
 
-        <div class="card interactive-card">
-            <h3>🎮 PS4 Controller Interface</h3>
-            <p class="text-body">Custom Python mapping to utilize dualshock inputs for controlling local hardware and scripts.</p>
-            <div class="tags-container">
-                <div class="tag"><i class="fa-brands fa-python"></i> Python</div>
-                <div class="tag"><i class="fa-solid fa-gamepad"></i> Hardware</div>
+            <div class="card interactive-card">
+                <h3>🎮 PS4 Controller Interface</h3>
+                <p class="text-body">Custom Python mapping to utilize dualshock inputs for controlling local hardware and scripts.</p>
+                <div class="tags-container">
+                    <div class="tag"><i class="fa-brands fa-python"></i> Python</div>
+                    <div class="tag"><i class="fa-solid fa-gamepad"></i> Hardware</div>
+                </div>
+                <a href="#" class="project-link">View Source <i class="fa-solid fa-arrow-right"></i></a>
             </div>
-            <a href="#" class="project-link">View Source <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
 
-        <div class="card span-2 interactive-card">
-            <h3>💻 Terminal User Interfaces</h3>
-            <p class="text-body">Developing feature-rich, interactive command-line applications that bring complex data into an easy-to-use TUI environment.</p>
-            <div class="tags-container">
-                <div class="tag"><i class="fa-solid fa-terminal"></i> CLI/TUI</div>
-                <div class="tag"><i class="fa-solid fa-wand-magic-sparkles"></i> UX Design</div>
+            <h2 class="section-title">Latest GitHub Repositories</h2>
+            <div id="github-loading" class="loader"><i class="fa-solid fa-circle-notch fa-spin"></i> Fetching repositories from GitHub...</div>
+            
             </div>
-            <a href="#" class="project-link">View Source <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-
-        <div class="card span-3 interactive-card">
-            <h3>🤖 Lego Mindstorms NXT Integration</h3>
-            <p class="text-body">Custom programming and remote interfacing over Bluetooth to execute complex robotics commands.</p>
-            <div class="tags-container">
-                <div class="tag"><i class="fa-solid fa-microchip"></i> Embedded Systems</div>
-                <div class="tag"><i class="fa-brands fa-bluetooth"></i> Bluetooth</div>
-            </div>
-        </div>
-
     </div>
 
     <script>
-        // Tab Switching Logic
+        // --- Tab Switching Logic ---
         function switchTab(event, tabId) {
-            // Hide all tabs
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Remove active state from all buttons
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Show the selected tab and highlight the button
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             event.currentTarget.classList.add('active');
         }
 
-        // 3D Tilt and Spotlight Effect
-        document.querySelectorAll('.interactive-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
+        // --- 3D Hover Effect Engine ---
+        function initHoverEffects() {
+            document.querySelectorAll('.interactive-card').forEach(card => {
+                // Remove old listeners to prevent stacking if function runs twice
+                const newCard = card.cloneNode(true);
+                card.parentNode.replaceChild(newCard, card);
+                
+                newCard.addEventListener('mousemove', e => {
+                    const rect = newCard.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
 
-                // Update CSS variables for the spotlight
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
+                    newCard.style.setProperty('--mouse-x', `${x}px`);
+                    newCard.style.setProperty('--mouse-y', `${y}px`);
 
-                // Calculate tilt
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * -4; 
-                const rotateY = ((x - centerX) / centerX) * 4;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -4; 
+                    const rotateY = ((x - centerX) / centerX) * 4;
 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                    newCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+
+                newCard.addEventListener('mouseleave', () => {
+                    newCard.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                });
             });
+        }
 
-            // Reset transform
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-            });
-        });
+        // --- GitHub API Fetch Logic ---
+        async function fetchGitHubRepos() {
+            const username = '200anxy'; 
+            const grid = document.getElementById('projects-grid');
+            const loader = document.getElementById('github-loading');
+
+            try {
+                // Fetch repos sorted by most recently updated
+                const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated`);
+                if (!response.ok) throw new Error('Failed to fetch repositories');
+                
+                const repos = await response.json();
+                loader.remove(); // Remove loading spinner
+
+                // Filter out forks and limit to the 6 most recent
+                const topRepos = repos.filter(repo => !repo.fork).slice(0, 6);
+
+                if (topRepos.length === 0) {
+                    grid.insertAdjacentHTML('beforeend', '<p style="grid-column: span 3; text-align: center; color: var(--text-secondary);">No public repositories found yet.</p>');
+                    return;
+                }
+
+                topRepos.forEach((repo, index) => {
+                    // Make the first dynamically fetched repo span 2 columns for a cool layout variation
+                    const spanClass = (index === 0) ? 'span-2' : '';
+                    const languageTag = repo.language ? `<div class="tag"><i class="fa-solid fa-code"></i> ${repo.language}</div>` : '';
+                    const description = repo.description || 'No description provided for this repository.';
+
+                    const html = `
+                        <div class="card ${spanClass} interactive-card">
+                            <h3><i class="fa-solid fa-folder-open"></i> ${repo.name}</h3>
+                            <p class="text-body">${description}</p>
+                            <div class="tags-container">
+                                ${languageTag}
+                                <div class="tag"><i class="fa-solid fa-star"></i> ${repo.stargazers_count}</div>
+                                <div class="tag"><i class="fa-solid fa-code-branch"></i> ${repo.forks_count}</div>
+                            </div>
+                            <a href="${repo.html_url}" target="_blank" class="project-link">View Repository <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    `;
+                    grid.insertAdjacentHTML('beforeend', html);
+                });
+
+                // Re-initialize hover effects so the new GitHub cards get the 3D tilt
+                initHoverEffects();
+
+            } catch (error) {
+                console.error(error);
+                loader.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Could not load GitHub repositories at this time.';
+            }
+        }
+
+        // Initialize everything on page load
+        window.onload = () => {
+            initHoverEffects();
+            fetchGitHubRepos();
+        };
     </script>
 </body>
 </html>
