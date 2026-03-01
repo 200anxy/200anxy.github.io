@@ -3,57 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>200anxy | Developer</title>
-    
-    <link rel="stylesheet" href="style.css">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <title>Aadarsh | @200anxy</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* =========================================
+           CUSTOMIZATION ZONE: Edit colors here!
+           ========================================= */
+        :root {
+            --bg-color: #0f172a;          /* Main background */
+            --card-bg: #1e293b;           /* Card background */
+            --card-border: #334155;       /* Card border */
+            --text-primary: #f8fafc;      /* Main text */
+            --text-secondary: #94a3b8;    /* Subtitles and bio */
+            --accent-color: #3b82f6;      /* Highlights and buttons */
+            --accent-hover: #60a5fa;      /* Button hover state */
+            --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        /* =========================================
+           BASE STYLES
+           ========================================= */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        /* =========================================
+           BENTO GRID LAYOUT
+           ========================================= */
+        .bento-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: transform 0.1s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        /* Span classes for grid sizing */
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+        .row-span-2 { grid-row: span 2; }
+
+        /* =========================================
+           SPECIFIC CARD STYLES
+           ========================================= */
+        /* Profile Card */
+        .profile-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1rem;
+        }
+
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-color), #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .alias {
+            color: var(--accent-color);
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-top: -0.5rem;
+        }
+
+        /* Bio Card */
+        .bio-card h2 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .bio-text {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        /* Tags/Interests Card */
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .tag:hover {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Social Links Card */
+        .social-links {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100%;
+        }
+
+        .social-btn {
+            color: var(--text-secondary);
+            font-size: 1.8rem;
+            transition: color 0.2s, transform 0.2s;
+            text-decoration: none;
+        }
+
+        .social-btn:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        /* =========================================
+           RESPONSIVE DESIGN
+           ========================================= */
+        @media (max-width: 768px) {
+            .bento-container {
+                grid-template-columns: 1fr;
+            }
+            .span-2, .span-3, .row-span-2 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h1 class="animate-on-load">200anxy</h1>
-            <p class="subtitle animate-on-load" style="transition-delay: 0.2s;">Developer // Creator // Problem Solver</p>
-        </div>
-    </header>
-
-    <main>
-        <section class="about-section animate-on-scroll">
-            <h2>About Me</h2>
-            <p>
-                Hi there! I'm 200anxy, and I am a student who is learning how to code. Currently I am interested in Machine Learning and AI, as well as learning C#.
-            </p>
-        </section>
+    <div class="bento-container">
         
-        <section class="skills-section animate-on-scroll">
-            <h2>My Tech Stack</h2>
-            <div class="logos">
-                <div class="logos-slide">
-                    <i class="devicon-python-plain"></i>
-                    <i class="devicon-csharp-plain-wordmark"></i>
-                    <i class="devicon-cplusplus-plain"></i>
-                    <i class="devicon-html5-plain-wordmark"></i>
-                    <i class="devicon-javascript-plain"></i>
-                    <i class="devicon-css3-plain-wordmark"></i>
-                    <i class="devicon-react-original"></i>
-                </div>
+        <div class="card profile-card row-span-2 interactive-card">
+            <div class="profile-pic">
+                <i class="fa-solid fa-code"></i>
             </div>
-        </section>
-    </main>
+            <div>
+                <h1>Aadarsh</h1>
+                <p class="alias">@200anxy</p>
+            </div>
+            <p class="bio-text" style="font-size: 0.95rem;">
+                Developer, builder, and continuous learner. Balancing code, creativity, and the daily grind.
+            </p>
+        </div>
 
-    <footer class="footer">
-        <p>Find me on 
-            <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a> &bull; 
-            <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        </p>
-        <p>&copy; 2025 200anxy. All rights reserved.</p>
-    </footer>
+        <div class="card bio-card span-2 interactive-card">
+            <h2><i class="fa-solid fa-hand-wave"></i> Hello, World!</h2>
+            <p class="bio-text">
+                I'm passionate about building things that work well and look great. Whether I'm diving into Python scripts, experimenting with Progressive Web Apps (PWAs), or tinkering with a Raspberry Pi, I'm always looking for the next problem to solve. When I'm not studying for VCE or writing code, I'm usually taking a break with some anime, catching up on manga, or practicing the piano.
+            </p>
+        </div>
 
-    <script src="script.js"></script>
+        <div class="card span-2 interactive-card">
+            <h2><i class="fa-solid fa-bolt"></i> Current Interests & Tech</h2>
+            <div class="tags-container">
+                <div class="tag"><i class="fa-brands fa-python"></i> Python</div>
+                <div class="tag"><i class="fa-solid fa-terminal"></i> TUI Development</div>
+                <div class="tag"><i class="fa-brands fa-chrome"></i> PWAs</div>
+                <div class="tag"><i class="fa-brands fa-raspberry-pi"></i> Raspberry Pi</div>
+                <div class="tag"><i class="fa-solid fa-music"></i> Piano</div>
+                <div class="tag"><i class="fa-solid fa-tv"></i> Anime & Manga</div>
+            </div>
+        </div>
+
+        <div class="card interactive-card">
+            <div class="social-links">
+                <a href="#" class="social-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="social-btn" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="mailto:your.email@example.com" class="social-btn" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Adds a dynamic spotlight glow and subtle 3D tilt effect to the cards
+        document.querySelectorAll('.interactive-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                // Update CSS variables for the spotlight glow effect
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+
+                // Calculate tilt angles
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -4; // Max tilt 4 deg
+                const rotateY = ((x - centerX) / centerX) * 4;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+
+            // Reset transform when mouse leaves
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            });
+        });
+    </script>
 </body>
 </html>
