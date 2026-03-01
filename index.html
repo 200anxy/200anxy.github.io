@@ -34,7 +34,7 @@
             color: var(--text-primary);
             font-family: var(--font-family);
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
             padding: 2rem;
@@ -42,14 +42,60 @@
         }
 
         /* =========================================
+           NAVIGATION
+           ========================================= */
+        .navbar {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 0.5rem;
+            border-radius: 20px;
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn {
+            background: transparent;
+            color: var(--text-secondary);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-btn.active {
+            background: var(--accent-color);
+            color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* =========================================
            BENTO GRID LAYOUT
            ========================================= */
-        .bento-container {
-            display: grid;
+        .tab-content {
+            display: none; /* Hidden by default */
             grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
             max-width: 900px;
             width: 100%;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .tab-content.active {
+            display: grid; /* Show active tab */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .card {
@@ -61,6 +107,8 @@
             transform-style: preserve-3d;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .card::before {
@@ -85,10 +133,9 @@
         /* =========================================
            SPECIFIC CARD STYLES
            ========================================= */
-        /* Profile Card */
+        
+        /* Profile & About Elements */
         .profile-card {
-            display: flex;
-            flex-direction: column;
             align-items: center;
             text-align: center;
             gap: 1rem;
@@ -107,33 +154,14 @@
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
         }
 
-        h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
+        h1 { font-size: 1.8rem; font-weight: 700; }
+        h2 { font-size: 1.4rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        h3 { font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--text-primary); }
+        
+        .alias { color: var(--accent-color); font-weight: 500; font-size: 1.1rem; margin-top: -0.5rem; }
+        .text-body { color: var(--text-secondary); font-size: 1.05rem; flex-grow: 1; }
 
-        .alias {
-            color: var(--accent-color);
-            font-weight: 500;
-            font-size: 1.1rem;
-            margin-top: -0.5rem;
-        }
-
-        /* Bio Card */
-        .bio-card h2 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .bio-text {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-        }
-
-        /* Tags/Interests Card */
+        /* Tags */
         .tags-container {
             display: flex;
             flex-wrap: wrap;
@@ -144,9 +172,9 @@
         .tag {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--card-border);
-            padding: 0.5rem 1rem;
-            border-radius: 12px;
-            font-size: 0.9rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
             color: var(--text-secondary);
             display: flex;
             align-items: center;
@@ -158,63 +186,56 @@
             background: var(--accent-color);
             color: white;
             border-color: var(--accent-color);
-            transform: translateY(-2px);
         }
 
-        /* Social Links Card */
-        .social-links {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            height: 100%;
-        }
-
-        .social-btn {
-            color: var(--text-secondary);
-            font-size: 1.8rem;
-            transition: color 0.2s, transform 0.2s;
-            text-decoration: none;
-        }
-
-        .social-btn:hover {
+        /* Links */
+        .social-links { display: flex; justify-content: space-around; align-items: center; height: 100%; }
+        .social-btn { color: var(--text-secondary); font-size: 1.8rem; transition: color 0.2s, transform 0.2s; text-decoration: none; }
+        .social-btn:hover { color: var(--accent-color); transform: scale(1.1); }
+        
+        .project-link {
+            display: inline-block;
+            margin-top: 1rem;
             color: var(--accent-color);
-            transform: scale(1.1);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.2s;
         }
+        .project-link:hover { color: var(--accent-hover); text-decoration: underline; }
 
         /* =========================================
            RESPONSIVE DESIGN
            ========================================= */
         @media (max-width: 768px) {
-            .bento-container {
-                grid-template-columns: 1fr;
-            }
-            .span-2, .span-3, .row-span-2 {
-                grid-column: span 1;
-                grid-row: span 1;
-            }
+            .tab-content { grid-template-columns: 1fr; }
+            .span-2, .span-3, .row-span-2 { grid-column: span 1; grid-row: span 1; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bento-container">
+    <nav class="navbar">
+        <button class="nav-btn active" onclick="switchTab(event, 'about')">About</button>
+        <button class="nav-btn" onclick="switchTab(event, 'projects')">Projects</button>
+    </nav>
+
+    <div id="about" class="tab-content active">
         
         <div class="card profile-card row-span-2 interactive-card">
-            <div class="profile-pic">
-                <i class="fa-solid fa-code"></i>
-            </div>
+            <div class="profile-pic"><i class="fa-solid fa-code"></i></div>
             <div>
                 <h1>Aadarsh</h1>
                 <p class="alias">@200anxy</p>
             </div>
-            <p class="bio-text" style="font-size: 0.95rem;">
+            <p class="text-body" style="font-size: 0.95rem; text-align: center;">
                 Developer, builder, and continuous learner. Balancing code, creativity, and the daily grind.
             </p>
         </div>
 
-        <div class="card bio-card span-2 interactive-card">
+        <div class="card span-2 interactive-card">
             <h2><i class="fa-solid fa-hand-wave"></i> Hello, World!</h2>
-            <p class="bio-text">
+            <p class="text-body">
                 I'm passionate about building things that work well and look great. Whether I'm diving into Python scripts, experimenting with Progressive Web Apps (PWAs), or tinkering with a Raspberry Pi, I'm always looking for the next problem to solve. When I'm not studying for VCE or writing code, I'm usually taking a break with some anime, catching up on manga, or practicing the piano.
             </p>
         </div>
@@ -238,31 +259,100 @@
                 <a href="mailto:your.email@example.com" class="social-btn" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </div>
+    </div>
+
+    <div id="projects" class="tab-content">
+        
+        <div class="card span-2 interactive-card">
+            <h3>📰 Morning News + Weather Scraper</h3>
+            <p class="text-body">A Python script designed to automatically aggregate daily news and local weather to streamline the morning routine.</p>
+            <div class="tags-container">
+                <div class="tag"><i class="fa-brands fa-python"></i> Python</div>
+                <div class="tag"><i class="fa-solid fa-robot"></i> Automation</div>
+            </div>
+            <a href="#" class="project-link">View Source <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="card interactive-card">
+            <h3>📱 Progressive Web Apps</h3>
+            <p class="text-body">Building responsive, installable web experiences focused on offline capabilities and seamless UI.</p>
+            <div class="tags-container">
+                <div class="tag"><i class="fa-brands fa-js"></i> JavaScript</div>
+                <div class="tag">PWA</div>
+            </div>
+            <a href="#" class="project-link">Live Demo <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="card interactive-card">
+            <h3>🎮 PS4 Controller Interface</h3>
+            <p class="text-body">Custom Python mapping to utilize dualshock inputs for controlling local hardware and scripts.</p>
+            <div class="tags-container">
+                <div class="tag"><i class="fa-brands fa-python"></i> Python</div>
+                <div class="tag"><i class="fa-solid fa-gamepad"></i> Hardware</div>
+            </div>
+            <a href="#" class="project-link">View Source <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="card span-2 interactive-card">
+            <h3>💻 Terminal User Interfaces</h3>
+            <p class="text-body">Developing feature-rich, interactive command-line applications that bring complex data into an easy-to-use TUI environment.</p>
+            <div class="tags-container">
+                <div class="tag"><i class="fa-solid fa-terminal"></i> CLI/TUI</div>
+                <div class="tag"><i class="fa-solid fa-wand-magic-sparkles"></i> UX Design</div>
+            </div>
+            <a href="#" class="project-link">View Source <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="card span-3 interactive-card">
+            <h3>🤖 Lego Mindstorms NXT Integration</h3>
+            <p class="text-body">Custom programming and remote interfacing over Bluetooth to execute complex robotics commands.</p>
+            <div class="tags-container">
+                <div class="tag"><i class="fa-solid fa-microchip"></i> Embedded Systems</div>
+                <div class="tag"><i class="fa-brands fa-bluetooth"></i> Bluetooth</div>
+            </div>
+        </div>
 
     </div>
 
     <script>
-        // Adds a dynamic spotlight glow and subtle 3D tilt effect to the cards
+        // Tab Switching Logic
+        function switchTab(event, tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active state from all buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show the selected tab and highlight the button
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // 3D Tilt and Spotlight Effect
         document.querySelectorAll('.interactive-card').forEach(card => {
             card.addEventListener('mousemove', e => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
 
-                // Update CSS variables for the spotlight glow effect
+                // Update CSS variables for the spotlight
                 card.style.setProperty('--mouse-x', `${x}px`);
                 card.style.setProperty('--mouse-y', `${y}px`);
 
-                // Calculate tilt angles
+                // Calculate tilt
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * -4; // Max tilt 4 deg
+                const rotateX = ((y - centerY) / centerY) * -4; 
                 const rotateY = ((x - centerX) / centerX) * 4;
 
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
             });
 
-            // Reset transform when mouse leaves
+            // Reset transform
             card.addEventListener('mouseleave', () => {
                 card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
             });
